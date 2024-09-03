@@ -1,0 +1,81 @@
+[
+    {
+        "reqid": "REQ-125",
+        "rationale": "with multiple modes",
+        "comments": "{\"hierarchy\": []}",
+        "fulltext": "In \"(test|second)\" mode, upon request_to_set_two, the component shall within 100 milliseconds satisfy if get_random_bool then get_true & result = 2.",
+        "semantics": {
+            "variables": [
+                "\"(test|second)\"",
+                "request_to_set_two",
+                "get_random_bool",
+                "get_true",
+                "result"
+            ],
+            "scope_mode": "\"(test|second)\"",
+            "scopeTextRange": [
+                0,
+                23
+            ],
+            "timingTextRange": [
+                70,
+                92
+            ],
+            "regular_condition_unexp_pt": "request_to_set_two",
+            "post_condition_unexp_ft": "(get_random_bool -> (get_true & (result = 2)))"
+        },
+        "_id": "9816cc81-cb2a-11ee-a283-c70d73357fbd"
+    },
+    {
+        "reqid": "REQ-123",
+        "rationale": "Shortened version of FRET export",
+        "comments": "{\"hierarchy\": []}",
+        "fulltext": "In test mode, upon request_to_set_two, the component shall within 100 milliseconds satisfy if get_random_bool then get_true & result = 2",
+        "semantics": {
+            "variables": [
+                "test",
+                "request_to_set_two",
+                "get_random_bool",
+                "get_true",
+                "result"
+            ],
+            "scope_mode": "test",
+            "scopeTextRange": [
+                0,
+                12
+            ],
+            "regular_condition_unexp_pt": "request_to_set_two",
+            "timingTextRange": [
+                59,
+                81
+            ],
+            "post_condition_unexp_ft": "(get_random_bool -> (get_true & (result = 2)))"
+        },
+        "_id": "d69d02b0-c500-11ee-8878-51ecb47fa01d"
+    },
+    {
+        "reqid": "REQ-126",
+        "comments": "{\"hierarchy\": []}",
+        "fulltext": "In test mode, upon (request_to_set_one | request_to_set_two), the component shall within 100 milliseconds satisfy (1 <= result & result <= 2).",
+        "semantics": {
+            "variables": [
+                "test",
+                "request_to_set_one",
+                "request_to_set_two",
+                "result"
+            ],
+            "scope_mode": "test",
+            "scopeTextRange": [
+                0,
+                12
+            ],
+            "timingTextRange": [
+                82,
+                104
+            ],
+            "regular_condition_unexp_pt": "(request_to_set_one | request_to_set_two)",
+            "post_condition_unexp_ft": "((1 <= result) & (result <= 2))"
+        },
+        "_id": "a85afbd0-cbdd-11ee-ad15-9b9ca54f3d02"
+    }
+]
