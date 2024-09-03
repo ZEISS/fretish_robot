@@ -37,14 +37,12 @@ def test__run_fret_to_robot_cli__given_file__correct_robot_output(
 
 
 def test__run_robot__on_testfile_exp_output__passes_properly(testfile_dir):
-
     res = robot.run_cli([testfile_dir / "expected_result.robot"], exit=False)
 
     assert res == 0
 
 
 def test__run_robot__on_executable_file__passes_properly(testfile_dir):
-
     res = robot.run_cli([testfile_dir / "executable_robotfile.robot"], exit=False)
 
     assert res == 0

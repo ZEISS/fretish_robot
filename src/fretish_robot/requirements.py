@@ -18,7 +18,6 @@ class FRETRequirement:
 
 
 def _transform_to_fret_req(req: dict) -> FRETRequirement:
-
     req_id = req["reqid"]
     fulltext = req["fulltext"]
     semantics = req["semantics"]

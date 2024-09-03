@@ -11,7 +11,6 @@ class Modes(enum.Enum):
 
 
 class ExampleModel:
-
     def __init__(self) -> None:
         self.mode = Modes.UNKNOWN
         self.number = 0

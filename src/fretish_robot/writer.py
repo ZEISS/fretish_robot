@@ -15,7 +15,6 @@ def write_testsuite(testsuite: TestSuite, root_output_dir: str):
 
 
 class RobotRSTPrinter(SuiteVisitor):
-
     def __init__(self, writable):
         self._writable = writable
 

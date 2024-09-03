@@ -11,7 +11,6 @@ EXPECTED_PREFIXED = "$a != 1 and $b == 1 or $c == 4 ** 3 - 1 and $b == 2 or $d <
 
 
 def test__to_python_expr__all_python_fretish_diffs__all_translated__all_():
-
     result = _to_python_expr(TEST_EXPR)
 
     assert result == EXPECTED_PYTHON
@@ -49,7 +48,6 @@ def test__to_python_expr__python_correctly_translated(expr, expected):
 def test__prefix_vars__expression_different_positions_suffixes__properly_replaced(
     expr, expected
 ):
-
     result = _prefix_vars(expr, ["d"])
 
     assert result == expected
@@ -72,7 +70,6 @@ def test__prefix_vars__expression_with_suffixes__not_replaced(expr):
 
 
 def test__prefix_vars__string_with_multiple_vars__all_prefixed():
-
     result = _prefix_vars(EXPECTED_PYTHON, ["a", "b", "c", "d"])
 
     assert result == EXPECTED_PREFIXED

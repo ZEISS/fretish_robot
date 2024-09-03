@@ -7,7 +7,6 @@ from fretish_robot.example_user_lib.example_model import ExampleModel
 
 
 class ExampleUserLib:
-
     def __init__(self):
         # This makes this library also a visitor, allowing reactions on test start, ...
         self.ROBOT_LIBRARY_LISTENER = self

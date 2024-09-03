@@ -20,13 +20,11 @@ def _get_testsuite():
 
 
 def _add_libs(suite: TestSuite, extra_libs: list[str]):
-
     for lib in ["fretish_robot.FRETLib"] + extra_libs:
         suite.resource.imports.library(lib)
 
 
 def _to_python_expr(expr: str) -> str:
-
     # normal replacement
     for cur, new in [
         (" ^ ", " ** "),
@@ -46,7 +44,6 @@ def _to_python_expr(expr: str) -> str:
 
 
 def _prefix_vars(expr: str, variables: list[str]) -> str:
-
     variable_find_expression = f"({'|'.join(variables)})"
 
     match_expr_unexpanding = rf"(?<![^\W]){variable_find_expression}(?![^\W])"
@@ -60,7 +57,6 @@ TAG = str
 
 
 def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TAG]]:
-
     scope_mode = fret_req.scope_mode
     if scope_mode != None:
         if scope_mode.startswith('"(') and scope_mode.endswith(')"'):
@@ -79,7 +75,6 @@ def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TA
 
 
 def _extract_events(fret_req: FRETRequirement) -> list[tuple[str | None, TAG]]:
-
     event = fret_req.trigger_event
     if event != None:
         if event.startswith("(") and event.endswith(")"):
@@ -104,7 +99,6 @@ def _construct_taglist(req_id: str, mode: str, event: str) -> list[tuple[str, st
 
 
 def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
-
     req_id = fret_req.req_id
     extracted_scopes = _extract_scope_modes(fret_req)
     extracted_events = _extract_events(fret_req)
@@ -113,7 +107,6 @@ def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
 
     for scope, scope_tag in extracted_scopes:
         for event, event_tag in extracted_events:
-
             test_number += 1
 
             tags = _construct_taglist(req_id, scope_tag, event_tag)
@@ -160,7 +153,6 @@ def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
 def _add_tests_from_requirements(
     suite: TestSuite, fret_requirements: list[FRETRequirement]
 ) -> None:
-
     for fret_req in fret_requirements:
         _add_single_test(suite, fret_req)
 
@@ -168,7 +160,6 @@ def _add_tests_from_requirements(
 def generate_robot_suite_from_fret(
     fret_requirements: list[FRETRequirement], extra_libs: list[str]
 ) -> TestSuite:
-
     suite = _get_testsuite()
 
     _add_libs(suite, extra_libs)
