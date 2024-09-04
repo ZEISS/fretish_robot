@@ -1,11 +1,12 @@
 # FRET support for Robot files
 
-This package provides the framework and capabilities to run FRET requirements in Robot Framework.
+This package provides the framework and capabilities to run [FRET requirements](https://github.com/NASA-SW-VnV/fret)
+in [Robot Framework](https://robotframework.org/).
 
-This package provides, on the one hand, a script `fret-to-robot` to convert parsed FRET JSON files
-into Robot Framework `.robot` files together with Knossos message implementations
-for events specified in requirements.  Hereby, a few new keywords are used to keep the requirement
-transformation readable and understandable, to enable proper reviews and traceability.
+This package provides, on the one hand, a script `fret-to-robot` to convert parsed FRET JSON files into Robot
+Framework `.robot` files together with an example implementation for events specified in requirements.
+Hereby, a few new keywords are used to keep the requirement transformation readable and understandable, to
+enable proper reviews and traceability.
 
 On the other hand, a Robot Framework library ``FRETLib`` is implemented that breaks down these requirements
 into built-in Robot Framework keywords, to maintain semantic but also reduce maintenance work.
@@ -43,7 +44,6 @@ Library    fretish_robot.FRETLib
 
 **Note**: This is already done by ``fret-to-robot``.
 
-
 ### Requirement behavior implementation
 
 The ``FretLib`` library transforms FRET keywords into standard
@@ -70,7 +70,6 @@ This can be done in two steps:
 
 **Note**: It is not necessary to adjust the robot execution then, if all libraries are installed.
 
-
 ### Executing generated Robot files
 
 To run the generated files, just do
@@ -79,10 +78,9 @@ To run the generated files, just do
 robot ./robot_files/result.robot
 ```
 
-
 ## Limitations
 
 There are some implementation details and restrictions to consider when using:
 
 * Only 'if then' and pure expressions are supported in the 'Satisfy' clause.
-* Formatting of printed requirements is fine, but not pretty. Could be improved in newer versions if needed.
+* Formatting of printed requirements is fine, but not pretty. This could be improved in newer versions if needed.
