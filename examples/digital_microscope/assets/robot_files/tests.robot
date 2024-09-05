@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright 2024 Carl Zeiss Meditec AG
+# SPDX-License-Identifier: Apache-2.0
+
 *** Settings ***
 Name    Generated FRET Testsuite
 Library    fretish_robot.FRETLib
