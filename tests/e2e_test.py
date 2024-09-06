@@ -31,7 +31,10 @@ def test__run_fret_to_robot_cli__given_file__correct_robot_output(
         result = rf.read().strip()
 
     with open(testfile_dir / "expected_result.robot") as ef:
-        expected_result = ef.read().strip()
+        lines = ef.readlines()
+        if lines[0].startswith("# SPDX-FileCopyrightText:"):
+            lines = lines[3:]
+        expected_result = "".join(lines).strip()
 
     assert result == expected_result
 
