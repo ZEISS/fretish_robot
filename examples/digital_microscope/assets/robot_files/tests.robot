@@ -7,13 +7,13 @@ TEST_REQ-01-01-1
     [Tags]    REQID=REQ-01-01    SCOPE=normal    TRIGGER=request_move_up
     In normal mode
     Upon    request_move_up
-    Within    200 millisecond    Satisfy    when (not  $tube_upper_end) then ($tube_moving_upwards and $answer_request_ok)
+    Within    200 millisecond    Satisfy    when (not $tube_upper_end) then ($tube_moving_upwards and $answer_request_ok)
 
 TEST_REQ-01-01-2
     [Tags]    REQID=REQ-01-01    SCOPE=homing    TRIGGER=request_move_up
     In homing mode
     Upon    request_move_up
-    Within    200 millisecond    Satisfy    when (not  $tube_upper_end) then ($tube_moving_upwards and $answer_request_ok)
+    Within    200 millisecond    Satisfy    when (not $tube_upper_end) then ($tube_moving_upwards and $answer_request_ok)
 
 TEST_REQ-01-02-1
     [Tags]    REQID=REQ-01-02    SCOPE=always    TRIGGER=tube_moving_upwards & tube_at_upper_end
@@ -29,13 +29,13 @@ TEST_REQ-01-04-1
     [Tags]    REQID=REQ-01-04    SCOPE=normal    TRIGGER=request_move_down
     In normal mode
     Upon    request_move_down
-    Within    200 millisecond    Satisfy    when (not  $tube_bottom_end) then ($tube_moving_downwards and $answer_request_ok)
+    Within    200 millisecond    Satisfy    when (not $tube_bottom_end) then ($tube_moving_downwards and $answer_request_ok)
 
 TEST_REQ-01-04-2
     [Tags]    REQID=REQ-01-04    SCOPE=homing    TRIGGER=request_move_down
     In homing mode
     Upon    request_move_down
-    Within    200 millisecond    Satisfy    when (not  $tube_bottom_end) then ($tube_moving_downwards and $answer_request_ok)
+    Within    200 millisecond    Satisfy    when (not $tube_bottom_end) then ($tube_moving_downwards and $answer_request_ok)
 
 TEST_REQ-01-05-1
     [Tags]    REQID=REQ-01-05    SCOPE=always    TRIGGER=always
@@ -61,13 +61,13 @@ TEST_REQ-02-03-1
     [Tags]    REQID=REQ-02-03    SCOPE=sample_prep    TRIGGER=request_brightness_increase
     In sample_prep mode
     Upon    request_brightness_increase
-    Within    200 milliseconds    Satisfy    when ($illumination_on and (not  ($actual_brightness == $max_brightness))) then ($configured_brightness_increased_by_10_percent and $answer_request_ok)
+    Within    200 milliseconds    Satisfy    when ($illumination_on and (not ($actual_brightness == $max_brightness))) then ($configured_brightness_increased_by_10_percent and $answer_request_ok)
 
 TEST_REQ-02-03-2
     [Tags]    REQID=REQ-02-03    SCOPE=capture    TRIGGER=request_brightness_increase
     In capture mode
     Upon    request_brightness_increase
-    Within    200 milliseconds    Satisfy    when ($illumination_on and (not  ($actual_brightness == $max_brightness))) then ($configured_brightness_increased_by_10_percent and $answer_request_ok)
+    Within    200 milliseconds    Satisfy    when ($illumination_on and (not ($actual_brightness == $max_brightness))) then ($configured_brightness_increased_by_10_percent and $answer_request_ok)
 
 TEST_REQ-03-01-1
     [Tags]    REQID=REQ-03-01    SCOPE=sample_prep    TRIGGER=request_change_objective

@@ -31,14 +31,9 @@ def _to_python_expr(expr: str) -> str:
         (" & ", " and "),
         (" | ", " or "),
         (" = ", " == "),
+        ("! ", "not "),
     ]:
         expr = expr.replace(cur, new)
-
-    # regex replacement
-    for cur, new in [
-        (r"!(?!=)", r"not "),  # replace '!', but not '!='
-    ]:
-        expr = re.sub(cur, new, expr)
 
     return expr
 
