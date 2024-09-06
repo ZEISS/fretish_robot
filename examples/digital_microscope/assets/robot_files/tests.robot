@@ -89,4 +89,3 @@ TEST_REQ-03-02-1
     In tube_moving mode
     Upon    request_change_objective
     Within    100 milliseconds    Satisfy    $answer_request_denied
-
