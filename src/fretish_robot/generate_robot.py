@@ -58,13 +58,12 @@ def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TA
             result = []
             different_modes = scope_mode[2:-2].split("|")
             for mode in different_modes:
-                scope_expr = fret_req.scope.replace(scope_mode, mode)
-                result.append((scope_expr, mode))
+                result.append((mode, mode))
 
             return result
 
         else:
-            return [(fret_req.scope, scope_mode)]
+            return [(scope_mode, scope_mode)]
     else:
         return [(None, "always")]
 
@@ -112,7 +111,7 @@ def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
             body: Body = test.body
 
             if scope:
-                body.create_keyword(scope)
+                body.create_keyword(f"In {scope} mode")
 
             if event:
                 body.create_keyword("Upon", args=[event])

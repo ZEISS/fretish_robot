@@ -30,7 +30,7 @@
         "reqid": "REQ-123",
         "rationale": "Shortened version of FRET export",
         "comments": "{\"hierarchy\": []}",
-        "fulltext": "In test mode, upon request_to_set_two, the component shall within 100 milliseconds satisfy if get_random_bool then get_true & result = 2",
+        "fulltext": "In test mode upon request_to_set_two, the component shall within 100 milliseconds satisfy if get_random_bool then get_true & result = 2",
         "semantics": {
             "variables": [
                 "test",
@@ -46,8 +46,8 @@
             ],
             "regular_condition_unexp_pt": "request_to_set_two",
             "timingTextRange": [
-                59,
-                81
+                58,
+                80
             ],
             "post_condition_unexp_ft": "(get_random_bool -> (get_true & (result = 2)))"
         },

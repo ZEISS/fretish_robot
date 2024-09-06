@@ -9,7 +9,6 @@ import json
 class FRETRequirement:
     req_id: str
     requirement_phrase: str
-    scope: str | None
     scope_mode: str | None
     trigger_event: str | None
     timing: str
@@ -23,11 +22,8 @@ def _transform_to_fret_req(req: dict) -> FRETRequirement:
     semantics = req["semantics"]
 
     if scopeTextRange := semantics.get("scopeTextRange", None):
-        scope_start, scope_end = scopeTextRange
-        scope = fulltext[scope_start:scope_end]
         scope_mode = semantics["scope_mode"]
     else:
-        scope = None
         scope_mode = None
 
     pre_condition = semantics.get("regular_condition_unexp_pt", None)
@@ -43,7 +39,6 @@ def _transform_to_fret_req(req: dict) -> FRETRequirement:
     fret_req = FRETRequirement(
         req_id=req_id,
         requirement_phrase=fulltext,
-        scope=scope,
         scope_mode=scope_mode,
         trigger_event=pre_condition,
         timing=timing,
