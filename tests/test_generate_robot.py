@@ -21,7 +21,7 @@ def test__to_python_expr__all_python_fretish_diffs__all_translated__all_():
     [
         ("(d <= 2)", "(d <= 2)"),
         ("(d != 2)", "(d != 2)"),
-        ("!(d == 2)", "not (d == 2)"),
+        ("! (d == 2)", "not (d == 2)"),
         ("(d ^ 2)", "(d ** 2)"),
         ("(d & 2==2)", "(d and 2==2)"),
         ("(d | 2==2)", "(d or 2==2)"),
