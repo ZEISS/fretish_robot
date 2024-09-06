@@ -21,7 +21,7 @@ def _transform_to_fret_req(req: dict) -> FRETRequirement:
     fulltext = req["fulltext"]
     semantics = req["semantics"]
 
-    if scopeTextRange := semantics.get("scopeTextRange", None):
+    if semantics.get("scopeTextRange", None):
         scope_mode = semantics["scope_mode"]
     else:
         scope_mode = None

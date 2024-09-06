@@ -1,10 +1,7 @@
 # SPDX-FileCopyrightText: Copyright 2023–2024 Carl Zeiss Meditec AG
 # SPDX-License-Identifier: Apache-2.0
 
-import dataclasses
-import itertools
 import logging
-import pathlib
 import re
 
 from robot.running.model import Body, Keyword, TestCase, TestSuite
@@ -15,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def _get_testsuite():
-    suite = TestSuite(f"Generated FRET Testsuite")
+    suite = TestSuite("Generated FRET Testsuite")
     return suite
 
 
@@ -53,7 +50,7 @@ TAG = str
 
 def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TAG]]:
     scope_mode = fret_req.scope_mode
-    if scope_mode != None:
+    if scope_mode is not None:
         if scope_mode.startswith('"(') and scope_mode.endswith(')"'):
             result = []
             different_modes = scope_mode[2:-2].split("|")
@@ -70,7 +67,7 @@ def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TA
 
 def _extract_events(fret_req: FRETRequirement) -> list[tuple[str | None, TAG]]:
     event = fret_req.trigger_event
-    if event != None:
+    if event is not None:
         if event.startswith("(") and event.endswith(")"):
             result = []
             different_events = event[1:-1].split("|")
