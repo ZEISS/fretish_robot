@@ -20,7 +20,7 @@ jobs:
       - name: Check style of package
         run: pre-commit run --all
       - name: Run tests
-        run: pytest tests
+        run: pytest --junit-xml=junit-reports/test_results.xml tests
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
