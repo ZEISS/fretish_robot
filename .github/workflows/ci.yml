@@ -10,6 +10,8 @@ jobs:
     name: Python ${{ matrix.python-version }} pipeline
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -19,6 +21,8 @@ jobs:
           pip install '.[dev]'
       - name: Check style of package
         run: pre-commit run --all
+      - name: Check Git commit messages
+        run: pre-commit run --hook-stage manual gitlint-ci
       - name: Run tests
         run: pytest --junit-xml=junit-reports/test_results.xml tests
       - name: Upload Test Results

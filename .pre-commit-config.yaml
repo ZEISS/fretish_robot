@@ -19,3 +19,4 @@ repos:
   hooks:
     - id: gitlint
     - id: gitlint-ci
+      args: [--commits, "origin/main..HEAD"]
