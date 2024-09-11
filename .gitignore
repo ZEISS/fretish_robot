@@ -8,3 +8,6 @@ report.html
 
 reports
 junit-reports
+
+**/build
+**/twister-out*
