@@ -1,0 +1,14 @@
+tests:
+  test.digitalmicroscope:
+    harness: robotframework
+      # need to set the correct path to assets/robot_files
+    platform_allow:
+      - native_sim
+      - native_sim_64
+    integration_platforms:
+      - native_sim
+      - native_sim_64
+    tags:
+      - test_framework
+      - fret
+
