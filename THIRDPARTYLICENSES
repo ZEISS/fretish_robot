@@ -1,11 +1,11 @@
 List of third-party software:
 -----------------------------
 
-Package: Jinja2 3.1.0
+Package: Jinja2 3.1.4
 License: BSD-3-clause
 Requires: MarkupSafe
-Author: Armin Ronacher <armin.ronacher@active-4.com>
-Home page: https://palletsprojects.com/p/jinja/
+Author: None
+Home page: None
 
 Copyright 2007 Pallets
 
