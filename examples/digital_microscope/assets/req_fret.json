@@ -5,69 +5,69 @@
         "project": "OSS Europe 2024",
         "rationale": "",
         "comments": "",
-        "fulltext": "UPON (tube_moving_downwards & tube_at_bottom_end) the tube_motion_controller SHALL at the next timepoint SATISFY tube_position_hold",
+        "fulltext": "UPON request_move_down the tube_motion_controller SHALL always​ SATISFY IF tube_at_bottom_end THEN tube_position_hold",
         "semantics": {
             "type": "nasa",
             "scope": {
                 "type": "null"
             },
             "condition": "regular",
-            "timing": "next",
+            "timing": "always",
             "response": "satisfaction",
             "variables": [
-                "tube_moving_downwards",
+                "request_move_down",
                 "tube_at_bottom_end",
                 "tube_position_hold"
             ],
             "qualifier_word": "upon",
-            "pre_condition": "(( tube_moving_downwards & tube_at_bottom_end ))",
-            "regular_condition": "(( tube_moving_downwards & tube_at_bottom_end ))",
+            "pre_condition": "(request_move_down)",
+            "regular_condition": "(request_move_down)",
             "conditionTextRange": [
                 0,
-                48
+                21
             ],
             "component_name": "tube_motion_controller",
             "componentTextRange": [
-                50,
-                75
+                23,
+                48
             ],
             "timingTextRange": [
-                83,
-                103
+                56,
+                61
             ],
-            "post_condition": "(tube_position_hold)",
+            "post_condition": "(tube_at_bottom_end => tube_position_hold)",
             "responseTextRange": [
-                105,
-                130
+                64,
+                116
             ],
-            "diagramVariables": "TC = <b><i>(( tube_moving_downwards & tube_at_bottom_end ))</i></b>, Response = <b><i>(tube_position_hold)</i></b>.",
-            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(( tube_moving_downwards & tube_at_bottom_end ))</i></b> is true and any point in the interval where <b><i>(( tube_moving_downwards & tube_at_bottom_end ))</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at the next time step.",
-            "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_next_satisfaction.svg",
+            "diagramVariables": "TC = <b><i>(request_move_down)</i></b>, Response = <b><i>(tube_at_bottom_end => tube_position_hold)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(request_move_down)</i></b> is true and any point in the interval where <b><i>(request_move_down)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_always_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
             "scope_mode_ft": "BAD_FT",
-            "regular_condition_unexp_pt": "(tube_moving_downwards & tube_at_bottom_end)",
-            "regular_condition_unexp_ft": "(tube_moving_downwards & tube_at_bottom_end)",
-            "regular_condition_SMV_pt": "(tube_moving_downwards & tube_at_bottom_end)",
-            "regular_condition_SMV_ft": "(tube_moving_downwards & tube_at_bottom_end)",
-            "post_condition_unexp_pt": "tube_position_hold",
-            "post_condition_unexp_ft": "tube_position_hold",
-            "post_condition_SMV_pt": "tube_position_hold",
-            "post_condition_SMV_ft": "tube_position_hold",
-            "ft_fetched": "((LAST V (((! $regular_condition_unexp_ft$) & ((! LAST) & (X $regular_condition_unexp_ft$))) -> (X (LAST | (X $post_condition_unexp_ft$))))) & ($regular_condition_unexp_ft$ -> (LAST | (X $post_condition_unexp_ft$))))",
-            "ft": "((LAST V (((! (tube_moving_downwards & tube_at_bottom_end)) & ((! LAST) & (X (tube_moving_downwards & tube_at_bottom_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_downwards & tube_at_bottom_end) -> (LAST | (X tube_position_hold))))",
-            "pt_fetched": "(H ((Y ($regular_condition_unexp_pt$ & ((Y (! $regular_condition_unexp_pt$)) | FTP))) -> ($post_condition_unexp_pt$ | FTP)))",
-            "pt": "(H ((Y ((tube_moving_downwards & tube_at_bottom_end) & ((Y (! (tube_moving_downwards & tube_at_bottom_end))) | FTP))) -> (tube_position_hold | FTP)))",
-            "ptExpanded_fetched": "(H ((Y ($regular_condition_SMV_pt$ & (Z (! $regular_condition_SMV_pt$)))) -> ($post_condition_SMV_pt$ | (! (Y TRUE)))))",
-            "ptExpanded": "(H ((Y ((tube_moving_downwards & tube_at_bottom_end) & (Z (! (tube_moving_downwards & tube_at_bottom_end))))) -> (tube_position_hold | (! (Y TRUE)))))",
-            "CoCoSpecCode": "H((YtoPre(((tube_moving_downwards and tube_at_bottom_end) and ZtoPre(not ((tube_moving_downwards and tube_at_bottom_end))))) => (tube_position_hold or not (YtoPre(true)))))",
-            "ftExpanded_fetched": "((LAST V (((! $regular_condition_SMV_ft$) & ((! LAST) & (X $regular_condition_SMV_ft$))) -> (X (LAST | (X $post_condition_SMV_ft$))))) & ($regular_condition_SMV_ft$ -> (LAST | (X $post_condition_SMV_ft$))))",
-            "ftExpandedUnoptimized": "((LAST V (((! (tube_moving_downwards & tube_at_bottom_end)) & ((! LAST) & (X (tube_moving_downwards & tube_at_bottom_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_downwards & tube_at_bottom_end) -> (LAST | (X tube_position_hold))))",
-            "ftExpanded": "((LAST V (((! (tube_moving_downwards & tube_at_bottom_end)) & ((! LAST) & (X (tube_moving_downwards & tube_at_bottom_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_downwards & tube_at_bottom_end) -> (LAST | (X tube_position_hold))))",
-            "ftInfAUExpanded_fetched": "((G (((! $regular_condition_SMV_ft$) & (X $regular_condition_SMV_ft$)) -> (X (X $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (X $post_condition_SMV_ft$)))",
-            "ftInfAUExpanded": "((G (((! (tube_moving_downwards & tube_at_bottom_end)) & (X (tube_moving_downwards & tube_at_bottom_end))) -> (X (X tube_position_hold)))) & ((tube_moving_downwards & tube_at_bottom_end) -> (X tube_position_hold)))",
+            "regular_condition_unexp_pt": "request_move_down",
+            "regular_condition_unexp_ft": "request_move_down",
+            "regular_condition_SMV_pt": "request_move_down",
+            "regular_condition_SMV_ft": "request_move_down",
+            "post_condition_unexp_pt": "(tube_at_bottom_end -> tube_position_hold)",
+            "post_condition_unexp_ft": "(tube_at_bottom_end -> tube_position_hold)",
+            "post_condition_SMV_pt": "(tube_at_bottom_end -> tube_position_hold)",
+            "post_condition_SMV_ft": "(tube_at_bottom_end -> tube_position_hold)",
+            "ft_fetched": "((LAST V (((! $regular_condition_unexp_ft$) & ((! LAST) & (X $regular_condition_unexp_ft$))) -> (X (LAST V $post_condition_unexp_ft$)))) & ($regular_condition_unexp_ft$ -> (LAST V $post_condition_unexp_ft$)))",
+            "ft": "((LAST V (((! request_move_down) & ((! LAST) & (X request_move_down))) -> (X (LAST V (tube_at_bottom_end -> tube_position_hold))))) & (request_move_down -> (LAST V (tube_at_bottom_end -> tube_position_hold))))",
+            "pt_fetched": "(H ((H (! $regular_condition_unexp_pt$)) | $post_condition_unexp_pt$))",
+            "pt": "(H ((H (! request_move_down)) | (tube_at_bottom_end -> tube_position_hold)))",
+            "ptExpanded_fetched": "(H ((H (! $regular_condition_SMV_pt$)) | $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((H (! request_move_down)) | (tube_at_bottom_end -> tube_position_hold)))",
+            "CoCoSpecCode": "H((H(not (request_move_down)) or (tube_at_bottom_end => tube_position_hold)))",
+            "ftExpanded_fetched": "((LAST V (((! $regular_condition_SMV_ft$) & ((! LAST) & (X $regular_condition_SMV_ft$))) -> (X (LAST V $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (LAST V $post_condition_SMV_ft$)))",
+            "ftExpandedUnoptimized": "((LAST V (((! request_move_down) & ((! LAST) & (X request_move_down))) -> (X (LAST V (tube_at_bottom_end -> tube_position_hold))))) & (request_move_down -> (LAST V (tube_at_bottom_end -> tube_position_hold))))",
+            "ftExpanded": "((LAST V (((! request_move_down) & ((! LAST) & (X request_move_down))) -> (X (LAST V (tube_at_bottom_end -> tube_position_hold))))) & (request_move_down -> (LAST V (tube_at_bottom_end -> tube_position_hold))))",
+            "ftInfAUExpanded_fetched": "((G (((! $regular_condition_SMV_ft$) & (X $regular_condition_SMV_ft$)) -> (X (G $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (G $post_condition_SMV_ft$)))",
+            "ftInfAUExpanded": "((G (((! request_move_down) & (X request_move_down)) -> (X (G (tube_at_bottom_end -> tube_position_hold))))) & (request_move_down -> (G (tube_at_bottom_end -> tube_position_hold))))",
             "component": "tube_motion_controller"
         },
-        "_id": "add9c770-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8270-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-01-02",
@@ -75,69 +75,69 @@
         "project": "OSS Europe 2024",
         "rationale": "",
         "comments": "",
-        "fulltext": "UPON (tube_moving_upwards & tube_at_upper_end) the tube_motion_controller SHALL at the next timepoint SATISFY tube_position_hold",
+        "fulltext": "UPON request_move_up the tube_motion_controller SHALL always​ SATISFY IF tube_at_upper_end THEN tube_position_hold",
         "semantics": {
             "type": "nasa",
             "scope": {
                 "type": "null"
             },
             "condition": "regular",
-            "timing": "next",
+            "timing": "always",
             "response": "satisfaction",
             "variables": [
-                "tube_moving_upwards",
+                "request_move_up",
                 "tube_at_upper_end",
                 "tube_position_hold"
             ],
             "qualifier_word": "upon",
-            "pre_condition": "(( tube_moving_upwards & tube_at_upper_end ))",
-            "regular_condition": "(( tube_moving_upwards & tube_at_upper_end ))",
+            "pre_condition": "(request_move_up)",
+            "regular_condition": "(request_move_up)",
             "conditionTextRange": [
                 0,
-                45
+                19
             ],
             "component_name": "tube_motion_controller",
             "componentTextRange": [
-                47,
-                72
+                21,
+                46
             ],
             "timingTextRange": [
-                80,
-                100
+                54,
+                59
             ],
-            "post_condition": "(tube_position_hold)",
+            "post_condition": "(tube_at_upper_end => tube_position_hold)",
             "responseTextRange": [
-                102,
-                127
+                62,
+                113
             ],
-            "diagramVariables": "TC = <b><i>(( tube_moving_upwards & tube_at_upper_end ))</i></b>, Response = <b><i>(tube_position_hold)</i></b>.",
-            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(( tube_moving_upwards & tube_at_upper_end ))</i></b> is true and any point in the interval where <b><i>(( tube_moving_upwards & tube_at_upper_end ))</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at the next time step.",
-            "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_next_satisfaction.svg",
+            "diagramVariables": "TC = <b><i>(request_move_up)</i></b>, Response = <b><i>(tube_at_upper_end => tube_position_hold)</i></b>.",
+            "description": "ENFORCED: in the interval defined by the entire execution.\nTRIGGER: first point in the interval if <b><i>(request_move_up)</i></b> is true and any point in the interval where <b><i>(request_move_up)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at all time points between (and including) the trigger and the end of the interval.",
+            "diagram": "_media/user-interface/examples/svgDiagrams/null_regular_always_satisfaction.svg",
             "scope_mode_pt": "BAD_PT",
             "scope_mode_ft": "BAD_FT",
-            "regular_condition_unexp_pt": "(tube_moving_upwards & tube_at_upper_end)",
-            "regular_condition_unexp_ft": "(tube_moving_upwards & tube_at_upper_end)",
-            "regular_condition_SMV_pt": "(tube_moving_upwards & tube_at_upper_end)",
-            "regular_condition_SMV_ft": "(tube_moving_upwards & tube_at_upper_end)",
-            "post_condition_unexp_pt": "tube_position_hold",
-            "post_condition_unexp_ft": "tube_position_hold",
-            "post_condition_SMV_pt": "tube_position_hold",
-            "post_condition_SMV_ft": "tube_position_hold",
-            "ft_fetched": "((LAST V (((! $regular_condition_unexp_ft$) & ((! LAST) & (X $regular_condition_unexp_ft$))) -> (X (LAST | (X $post_condition_unexp_ft$))))) & ($regular_condition_unexp_ft$ -> (LAST | (X $post_condition_unexp_ft$))))",
-            "ft": "((LAST V (((! (tube_moving_upwards & tube_at_upper_end)) & ((! LAST) & (X (tube_moving_upwards & tube_at_upper_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_upwards & tube_at_upper_end) -> (LAST | (X tube_position_hold))))",
-            "pt_fetched": "(H ((Y ($regular_condition_unexp_pt$ & ((Y (! $regular_condition_unexp_pt$)) | FTP))) -> ($post_condition_unexp_pt$ | FTP)))",
-            "pt": "(H ((Y ((tube_moving_upwards & tube_at_upper_end) & ((Y (! (tube_moving_upwards & tube_at_upper_end))) | FTP))) -> (tube_position_hold | FTP)))",
-            "ptExpanded_fetched": "(H ((Y ($regular_condition_SMV_pt$ & (Z (! $regular_condition_SMV_pt$)))) -> ($post_condition_SMV_pt$ | (! (Y TRUE)))))",
-            "ptExpanded": "(H ((Y ((tube_moving_upwards & tube_at_upper_end) & (Z (! (tube_moving_upwards & tube_at_upper_end))))) -> (tube_position_hold | (! (Y TRUE)))))",
-            "CoCoSpecCode": "H((YtoPre(((tube_moving_upwards and tube_at_upper_end) and ZtoPre(not ((tube_moving_upwards and tube_at_upper_end))))) => (tube_position_hold or not (YtoPre(true)))))",
-            "ftExpanded_fetched": "((LAST V (((! $regular_condition_SMV_ft$) & ((! LAST) & (X $regular_condition_SMV_ft$))) -> (X (LAST | (X $post_condition_SMV_ft$))))) & ($regular_condition_SMV_ft$ -> (LAST | (X $post_condition_SMV_ft$))))",
-            "ftExpandedUnoptimized": "((LAST V (((! (tube_moving_upwards & tube_at_upper_end)) & ((! LAST) & (X (tube_moving_upwards & tube_at_upper_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_upwards & tube_at_upper_end) -> (LAST | (X tube_position_hold))))",
-            "ftExpanded": "((LAST V (((! (tube_moving_upwards & tube_at_upper_end)) & ((! LAST) & (X (tube_moving_upwards & tube_at_upper_end)))) -> (X (LAST | (X tube_position_hold))))) & ((tube_moving_upwards & tube_at_upper_end) -> (LAST | (X tube_position_hold))))",
-            "ftInfAUExpanded_fetched": "((G (((! $regular_condition_SMV_ft$) & (X $regular_condition_SMV_ft$)) -> (X (X $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (X $post_condition_SMV_ft$)))",
-            "ftInfAUExpanded": "((G (((! (tube_moving_upwards & tube_at_upper_end)) & (X (tube_moving_upwards & tube_at_upper_end))) -> (X (X tube_position_hold)))) & ((tube_moving_upwards & tube_at_upper_end) -> (X tube_position_hold)))",
+            "regular_condition_unexp_pt": "request_move_up",
+            "regular_condition_unexp_ft": "request_move_up",
+            "regular_condition_SMV_pt": "request_move_up",
+            "regular_condition_SMV_ft": "request_move_up",
+            "post_condition_unexp_pt": "(tube_at_upper_end -> tube_position_hold)",
+            "post_condition_unexp_ft": "(tube_at_upper_end -> tube_position_hold)",
+            "post_condition_SMV_pt": "(tube_at_upper_end -> tube_position_hold)",
+            "post_condition_SMV_ft": "(tube_at_upper_end -> tube_position_hold)",
+            "ft_fetched": "((LAST V (((! $regular_condition_unexp_ft$) & ((! LAST) & (X $regular_condition_unexp_ft$))) -> (X (LAST V $post_condition_unexp_ft$)))) & ($regular_condition_unexp_ft$ -> (LAST V $post_condition_unexp_ft$)))",
+            "ft": "((LAST V (((! request_move_up) & ((! LAST) & (X request_move_up))) -> (X (LAST V (tube_at_upper_end -> tube_position_hold))))) & (request_move_up -> (LAST V (tube_at_upper_end -> tube_position_hold))))",
+            "pt_fetched": "(H ((H (! $regular_condition_unexp_pt$)) | $post_condition_unexp_pt$))",
+            "pt": "(H ((H (! request_move_up)) | (tube_at_upper_end -> tube_position_hold)))",
+            "ptExpanded_fetched": "(H ((H (! $regular_condition_SMV_pt$)) | $post_condition_SMV_pt$))",
+            "ptExpanded": "(H ((H (! request_move_up)) | (tube_at_upper_end -> tube_position_hold)))",
+            "CoCoSpecCode": "H((H(not (request_move_up)) or (tube_at_upper_end => tube_position_hold)))",
+            "ftExpanded_fetched": "((LAST V (((! $regular_condition_SMV_ft$) & ((! LAST) & (X $regular_condition_SMV_ft$))) -> (X (LAST V $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (LAST V $post_condition_SMV_ft$)))",
+            "ftExpandedUnoptimized": "((LAST V (((! request_move_up) & ((! LAST) & (X request_move_up))) -> (X (LAST V (tube_at_upper_end -> tube_position_hold))))) & (request_move_up -> (LAST V (tube_at_upper_end -> tube_position_hold))))",
+            "ftExpanded": "((LAST V (((! request_move_up) & ((! LAST) & (X request_move_up))) -> (X (LAST V (tube_at_upper_end -> tube_position_hold))))) & (request_move_up -> (LAST V (tube_at_upper_end -> tube_position_hold))))",
+            "ftInfAUExpanded_fetched": "((G (((! $regular_condition_SMV_ft$) & (X $regular_condition_SMV_ft$)) -> (X (G $post_condition_SMV_ft$)))) & ($regular_condition_SMV_ft$ -> (G $post_condition_SMV_ft$)))",
+            "ftInfAUExpanded": "((G (((! request_move_up) & (X request_move_up)) -> (X (G (tube_at_upper_end -> tube_position_hold))))) & (request_move_up -> (G (tube_at_upper_end -> tube_position_hold))))",
             "component": "tube_motion_controller"
         },
-        "_id": "add9c771-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8271-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-03-01",
@@ -214,7 +214,7 @@
             "ftInfAUExpanded": "((G ((! ((! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_) & (X _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) | (X (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_change_objective) & ((X request_change_objective) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,1] (objective_lense_changed_clockwise_ok & answer_request_ok)) | (F[0,0] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_change_objective -> ((F[0,1] (objective_lense_changed_clockwise_ok & answer_request_ok)) | (F[0,0] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))) & (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ -> (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_change_objective) & ((X request_change_objective) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,1] (objective_lense_changed_clockwise_ok & answer_request_ok)) | (F[0,0] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_change_objective -> ((F[0,1] (objective_lense_changed_clockwise_ok & answer_request_ok)) | (F[0,0] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))",
             "component": "nose_piece_controller"
         },
-        "_id": "add9c772-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8272-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-01-01",
@@ -222,7 +222,7 @@
         "project": "OSS Europe 2024",
         "rationale": "",
         "comments": "",
-        "fulltext": "IN \"(normal|homing)\" mode UPON request_move_up the tube_motion_controller SHALL within 200 millisecond SATISFY IF !tube_upper_end THEN (tube_moving_upwards & answer_request_ok)",
+        "fulltext": "IN \"(normal|homing)\" mode UPON request_move_up the tube_motion_controller SHALL within 200 millisecond SATISFY IF ! tube_upper_end THEN (tube_moving_upwards & answer_request_ok)",
         "semantics": {
             "type": "nasa",
             "scope": {
@@ -263,7 +263,7 @@
             "post_condition": "(! tube_upper_end => ( tube_moving_upwards & answer_request_ok ))",
             "responseTextRange": [
                 103,
-                175
+                176
             ],
             "diagramVariables": "M = <b><i>\"(normal|homing)\"</i></b>, TC = <b><i>(request_move_up)</i></b>,  n = <b><i>200</i></b>, Response = <b><i>(! tube_upper_end => ( tube_moving_upwards & answer_request_ok ))</i></b>.",
             "description": "ENFORCED: in every interval where <b><i>\"(normal|homing)\"</i></b> holds.\nTRIGGER: first point in the interval if <b><i>(request_move_up)</i></b> is true and any point in the interval where <b><i>(request_move_up)</i></b> becomes true (from false).\nREQUIRES: for every trigger, RES must hold at some point with distance <= <b><i>200</i></b> from the trigger (i.e., at trigger, trigger+1, ..., or trigger+<b><i>200</i></b>). If the interval ends sooner than trigger+<b><i>200</i></b>, then RES need not hold.",
@@ -292,7 +292,7 @@
             "ftInfAUExpanded": "((G ((! ((! _DQT__LPR_normal_VBR_homing_RPR__DQT_) & (X _DQT__LPR_normal_VBR_homing_RPR__DQT_))) | (X (((_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))) V (((! request_move_up) & ((X request_move_up) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) -> ((X ((F[0,200] ((! tube_upper_end) -> (tube_moving_upwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))))))) & (request_move_up -> ((F[0,200] ((! tube_upper_end) -> (tube_moving_upwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))))))) & (_DQT__LPR_normal_VBR_homing_RPR__DQT_ -> (((_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))) V (((! request_move_up) & ((X request_move_up) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) -> ((X ((F[0,200] ((! tube_upper_end) -> (tube_moving_upwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))))))) & (request_move_up -> ((F[0,200] ((! tube_upper_end) -> (tube_moving_upwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))))))",
             "component": "tube_motion_controller"
         },
-        "_id": "add9c773-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8273-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-01-04",
@@ -370,7 +370,7 @@
             "ftInfAUExpanded": "((G ((! ((! _DQT__LPR_normal_VBR_homing_RPR__DQT_) & (X _DQT__LPR_normal_VBR_homing_RPR__DQT_))) | (X (((_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))) V (((! request_move_down) & ((X request_move_down) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) -> ((X ((F[0,200] ((! tube_bottom_end) -> (tube_moving_downwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))))))) & (request_move_down -> ((F[0,200] ((! tube_bottom_end) -> (tube_moving_downwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))))))) & (_DQT__LPR_normal_VBR_homing_RPR__DQT_ -> (((_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))) V (((! request_move_down) & ((X request_move_down) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) -> ((X ((F[0,200] ((! tube_bottom_end) -> (tube_moving_downwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))) & (! (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_))))))) & (request_move_down -> ((F[0,200] ((! tube_bottom_end) -> (tube_moving_downwards & answer_request_ok))) | (F[0,199] (_DQT__LPR_normal_VBR_homing_RPR__DQT_ & (X (! _DQT__LPR_normal_VBR_homing_RPR__DQT_)))))))))",
             "component": "tube_motion_controller"
         },
-        "_id": "add9c774-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8274-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-03-02",
@@ -446,7 +446,7 @@
             "ftInfAUExpanded": "((G ((! ((! tube_moving) & (X tube_moving))) | (X (((tube_moving & (X (! tube_moving))) V (((! request_change_objective) & ((X request_change_objective) & (! (tube_moving & (X (! tube_moving)))))) -> ((X ((F[0,100] answer_request_denied) | (F[0,99] (tube_moving & (X (! tube_moving)))))) & (! (tube_moving & (X (! tube_moving))))))) & (request_change_objective -> ((F[0,100] answer_request_denied) | (F[0,99] (tube_moving & (X (! tube_moving)))))))))) & (tube_moving -> (((tube_moving & (X (! tube_moving))) V (((! request_change_objective) & ((X request_change_objective) & (! (tube_moving & (X (! tube_moving)))))) -> ((X ((F[0,100] answer_request_denied) | (F[0,99] (tube_moving & (X (! tube_moving)))))) & (! (tube_moving & (X (! tube_moving))))))) & (request_change_objective -> ((F[0,100] answer_request_denied) | (F[0,99] (tube_moving & (X (! tube_moving)))))))))",
             "component": "nose_piece_controller"
         },
-        "_id": "add9c775-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8275-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-02-03",
@@ -526,7 +526,7 @@
             "ftInfAUExpanded": "((G ((! ((! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_) & (X _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) | (X (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_brightness_increase) & ((X request_brightness_increase) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,200] ((illumination_on & (! (actual_brightness = max_brightness))) -> (configured_brightness_increased_by_10_percent & answer_request_ok))) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_brightness_increase -> ((F[0,200] ((illumination_on & (! (actual_brightness = max_brightness))) -> (configured_brightness_increased_by_10_percent & answer_request_ok))) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))) & (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ -> (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_brightness_increase) & ((X request_brightness_increase) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,200] ((illumination_on & (! (actual_brightness = max_brightness))) -> (configured_brightness_increased_by_10_percent & answer_request_ok))) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_brightness_increase -> ((F[0,200] ((illumination_on & (! (actual_brightness = max_brightness))) -> (configured_brightness_increased_by_10_percent & answer_request_ok))) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))",
             "component": "illumination_control"
         },
-        "_id": "add9c776-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8276-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-01-05",
@@ -585,7 +585,7 @@
             "ftInfAUExpanded": "(G ((tube_moving_upwards | tube_moving_downwards) -> tube_moving))",
             "component": "tube_motion_controller"
         },
-        "_id": "add9c777-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8277-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-02-01",
@@ -664,7 +664,7 @@
             "ftInfAUExpanded": "((G ((! ((! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_) & (X _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) | (X (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_illuminate_on) & ((X request_illuminate_on) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,200] ((illumination_on & (actual_brightness = configured_brightness)) & answer_request_ok)) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_illuminate_on -> ((F[0,200] ((illumination_on & (actual_brightness = configured_brightness)) & answer_request_ok)) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))) & (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ -> (((_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))) V (((! request_illuminate_on) & ((X request_illuminate_on) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) -> ((X ((F[0,200] ((illumination_on & (actual_brightness = configured_brightness)) & answer_request_ok)) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))) & (! (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_))))))) & (request_illuminate_on -> ((F[0,200] ((illumination_on & (actual_brightness = configured_brightness)) & answer_request_ok)) | (F[0,199] (_DQT__LPR_sample_prep_VBR_capture_RPR__DQT_ & (X (! _DQT__LPR_sample_prep_VBR_capture_RPR__DQT_)))))))))",
             "component": "illumination_control"
         },
-        "_id": "add9c778-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8278-7457-11ef-84b9-a742045c2715"
     },
     {
         "reqid": "REQ-02-02",
@@ -723,6 +723,6 @@
             "ftInfAUExpanded": "(G ((configured_brightness <= max_brightness) & (configured_brightness >= min_brightness)))",
             "component": "illumination_control"
         },
-        "_id": "add9c779-6922-11ef-b3b5-1576b33a41f5"
+        "_id": "634c8279-7457-11ef-84b9-a742045c2715"
     }
 ]
