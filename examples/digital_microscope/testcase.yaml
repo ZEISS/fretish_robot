@@ -1,7 +1,10 @@
 tests:
   test.digitalmicroscope:
     harness: robotframework
-      # need to set the correct path to assets/robot_files
+    harness_config:
+      robot_test_path: assets/robot_files
+    extra_configs:
+      - arch:posix:CONFIG_NATIVE_UART_0_ON_STDINOUT=y
     platform_allow:
       - native_sim
       - native_sim_64
@@ -11,4 +14,3 @@ tests:
     tags:
       - test_framework
       - fret
-
