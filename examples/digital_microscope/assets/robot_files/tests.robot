@@ -4,6 +4,7 @@
 *** Settings ***
 Name    Generated FRET Testsuite
 Library    fretish_robot.FRETLib
+Library    DigitalMicroscopeLib
 
 *** Test Cases ***
 TEST_REQ-01-01-1
@@ -19,14 +20,14 @@ TEST_REQ-01-01-2
     Within    200 millisecond    Satisfy    when (not $tube_upper_end) then ($tube_moving_upwards and $answer_request_ok)
 
 TEST_REQ-01-02-1
-    [Tags]    REQID=REQ-01-02    SCOPE=always    TRIGGER=tube_moving_upwards & tube_at_upper_end
-    Upon    tube_moving_upwards & tube_at_upper_end
-    At the next timepoint    Satisfy    $tube_position_hold
+    [Tags]    REQID=REQ-01-02    SCOPE=always    TRIGGER=request_move_up
+    Upon    request_move_up
+    FAIL    timing requirement 'always' not implemented
 
 TEST_REQ-01-03-1
-    [Tags]    REQID=REQ-01-03    SCOPE=always    TRIGGER=tube_moving_downwards & tube_at_bottom_end
-    Upon    tube_moving_downwards & tube_at_bottom_end
-    At the next timepoint    Satisfy    $tube_position_hold
+    [Tags]    REQID=REQ-01-03    SCOPE=always    TRIGGER=request_move_down
+    Upon    request_move_down
+    FAIL    timing requirement 'always' not implemented
 
 TEST_REQ-01-04-1
     [Tags]    REQID=REQ-01-04    SCOPE=normal    TRIGGER=request_move_down
