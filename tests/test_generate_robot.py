@@ -3,7 +3,7 @@
 
 import pytest
 
-from fretish_robot.generate_robot import _prefix_vars, _to_python_expr
+from fretish_robot.generate_robot import _extract_events, _prefix_vars, _to_python_expr
 
 TEST_EXPR = "a != 1 & b = 1 | c = 4 ^ 3 - 1 & b = 2 | d <= a"
 EXPECTED_PYTHON = "a != 1 and b == 1 or c == 4 ** 3 - 1 and b == 2 or d <= a"
@@ -73,3 +73,16 @@ def test__prefix_vars__string_with_multiple_vars__all_prefixed():
     result = _prefix_vars(EXPECTED_PYTHON, ["a", "b", "c", "d"])
 
     assert result == EXPECTED_PREFIXED
+
+
+@pytest.mark.parametrize(
+    "expr, expected",
+    [
+        ("a", [("a", "a")]),
+        ("(( a | b) |c_d)", [("a", "a"), ("b", "b"), ("c_d", "c_d")]),
+    ],
+)
+def test___extract_events__different_inputes__correctly_extracted(expr, expected):
+    result = _extract_events(expr)
+
+    assert result == expected
