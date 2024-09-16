@@ -84,6 +84,7 @@ There are some implementation details and restrictions to consider when using:
 
 * Only 'if then' and pure expressions are supported in the 'Satisfy' clause.
 * Formatting of printed requirements is fine, but not pretty. This could be improved in newer versions if needed.
+* Different events in the 'Upon' clause can only be separated by '|' ('or') and are split into different test cases.
 
 ## Contributing
 

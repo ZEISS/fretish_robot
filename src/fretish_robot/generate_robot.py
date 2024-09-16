@@ -65,20 +65,13 @@ def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TA
         return [(None, "always")]
 
 
-def _extract_events(fret_req: FRETRequirement) -> list[tuple[str | None, TAG]]:
-    event = fret_req.trigger_event
+# TODO: This currently can only handle '|' separated events,
+# we will need a more complex extraction and split code when we want
+# to also support '&'
+def _extract_events(event: str | None) -> list[tuple[str | None, TAG]]:
     if event is not None:
-        if event.startswith("(") and event.endswith(")"):
-            result = []
-            different_events = event[1:-1].split("|")
-            for diff_event in different_events:
-                diff_event = diff_event.strip()
-                result.append((diff_event, diff_event))
-            return result
-        else:
-            return [(event, event)]
-        ...
-
+        all_events = re.findall(r"\w+", event)
+        return list(map(lambda x: (x, x), all_events))
     else:
         return [(None, "always")]
 
@@ -92,7 +85,7 @@ def _construct_taglist(req_id: str, mode: str, event: str) -> list[tuple[str, st
 def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
     req_id = fret_req.req_id
     extracted_scopes = _extract_scope_modes(fret_req)
-    extracted_events = _extract_events(fret_req)
+    extracted_events = _extract_events(fret_req.trigger_event)
 
     test_number = 0
 
