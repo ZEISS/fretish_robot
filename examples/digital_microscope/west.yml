@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 Carl Zeiss Meditec AG
+# SPDX-License-Identifier: Apache-2.0
+
+manifest:
+  version: "0.13"
+
+  # If not otherwise specified, the projects below should be obtained
+  # from the ZEISS remote.
+  defaults:
+    remote: origin
+
+  remotes:
+    - name: origin
+      url-base: https://github.com/ZEISS
+
+  projects:
+    - name: zephyr
+      remote: origin
+      revision: zeiss/fretish_robot
+      west-commands: scripts/west-commands.yml
