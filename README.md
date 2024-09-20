@@ -116,3 +116,7 @@ By making a contribution to this project, I certify that:
     maintained indefinitely and may be redistributed consistent with
     this project or the open source license(s) involved.
 ```
+
+## Talks
+
+Slides and recordings related to this project can be found [in the `talks` directory](talks/).
