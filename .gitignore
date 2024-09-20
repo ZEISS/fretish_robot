@@ -11,3 +11,5 @@ junit-reports
 
 **/build
 **/twister-out*
+
+.venv*/
