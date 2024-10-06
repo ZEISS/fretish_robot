@@ -5,8 +5,10 @@ This directory contains slides and recordings of talks related to `fret-to-robot
 ## Level Up Your Embedded Testing Game – FRETish, Robot, and Twister: A Dream Team
 
 * **Date**: September 17, 2024
-* **Event**: Open Source Summit Europa, Vienna
+* **Event**: Open Source Summit Europe, Vienna
 * **Slides**: [20240917 OSS Europe Level Up Your Embedded Testing Game.pdf](20240917%20OSS%20Europe%20Level%20Up%20Your%20Embedded%20Testing%20Game.pdf)
+* **Recording**: [Level Up Your Embedded Testing Game – Christian Schlotter, ZEISS & Tobias Kästner, inovex](https://www.youtube.com/watch?v=ndQzEjUiXc4)
+  (part of [Zephyr @ OSS EU 2024 playlist on YouTube](https://www.youtube.com/watch?v=X3t240T_-nM&list=PLbzoR-pLrL6qIlWuafNzT5k19Yi16OF27&pp=iAQB))
 * **Abstract**:
 
   Developing embedded software for regulated environments like medical devices presents unique challenges. Crucially,
