@@ -119,12 +119,19 @@ def _add_single_test(suite: TestSuite, fret_req: FRETRequirement) -> None:
                 satisfiable = Keyword("Satisfy", args=[condition])
 
             timing = fret_req.timing.lower()
-            if timing.startswith("within") or timing.startswith("after"):
-                word, timing_cond = timing.split(" ", maxsplit=1)
+            timing_keywords = {
+                "within": "Within",
+                "after": "After",
+                "immediately": "Immediately",
+                "at the next timepoint": "At The Next Timepoint",
+            }
 
+            timing_keyword = timing_keywords.get(timing)
+            if timing_keyword:
+                body.create_keyword(timing_keyword, args=[satisfiable])
+            elif timing.startswith("within") or timing.startswith("after"):
+                word, timing_cond = timing.split(" ", maxsplit=1)
                 body.create_keyword(word.capitalize(), args=[timing_cond, satisfiable])
-            elif timing in ["immediately", "at the next timepoint"]:
-                body.create_keyword(timing.capitalize(), args=[satisfiable])
             else:
                 logger.warning(
                     f"{req_id} has timing requirement {timing}, not implemented!"
