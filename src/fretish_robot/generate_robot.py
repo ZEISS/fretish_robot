@@ -70,8 +70,7 @@ def _extract_scope_modes(fret_req: FRETRequirement) -> list[tuple[str | None, TA
 # to also support '&'
 def _extract_events(event: str | None) -> list[tuple[str | None, TAG]]:
     if event is not None:
-        all_events = re.findall(r"\w+", event)
-        return list(map(lambda x: (x, x), all_events))
+        return [(x, x) for x in re.findall(r"\w+", event)]
     else:
         return [(None, "always")]
 
