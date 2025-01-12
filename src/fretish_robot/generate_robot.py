@@ -22,17 +22,15 @@ def _add_libs(suite: TestSuite, extra_libs: list[str]):
 
 
 def _to_python_expr(expr: str) -> str:
-    # normal replacement
-    for cur, new in [
-        (" ^ ", " ** "),
-        (" & ", " and "),
-        (" | ", " or "),
-        (" = ", " == "),
-        ("! ", "not "),
-    ]:
-        expr = expr.replace(cur, new)
-
-    return expr
+    replacements = {
+        " ^ ": " ** ",
+        " & ": " and ",
+        " | ": " or ",
+        " = ": " == ",
+        "! ": "not ",
+    }
+    pattern = re.compile("|".join(re.escape(k) for k in replacements))
+    return pattern.sub(lambda m: replacements[m.group(0)], expr)
 
 
 def _prefix_vars(expr: str, variables: list[str]) -> str:
